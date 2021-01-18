@@ -29,11 +29,13 @@ CREATE TABLE departments(
 	dept_name VARCHAR
 ); 
 
---issue with uploading data when setting empno as primary key?
+--issue with uploading data when setting emp_no as primary key?
 CREATE TABLE dept_emp (
     emp_no integer,
-    dept_no VARCHAR
-	--foreign key (dept_no) references departments(dept_no)
+	foreign key (emp_no) references employees(emp_no),
+    dept_no VARCHAR,
+	foreign key (dept_no) references departments(dept_no),
+	primary key(emp_no, dept_no)
 );
 
 CREATE TABLE dept_manager (
@@ -49,5 +51,5 @@ CREATE TABLE salaries (
 	foreign key (emp_no) references employees(emp_no)
 );
 
---import data using import wizard
+--import data using import wizard; use select * from to review as needed
 select * from dept_emp;
